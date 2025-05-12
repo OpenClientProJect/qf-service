@@ -25,7 +25,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(loginInterceptors)
                 .order(1) // 设置顺序
                 .excludePathPatterns(getExcludePaths())
-                .addPathPatterns("/api/user/**", "/api/uploadVideo", "/api/upload","/api/comments/publish","/api/anime/**","/api/admin/**");
+                .addPathPatterns("/api/user/**","/api/video/record/**", "/api/uploadVideo", "/api/upload","/api/comments/publish","/api/anime/**","/api/admin/**");
 
         // 请求截器
         registry.addInterceptor(rateLimitInterceptor)
