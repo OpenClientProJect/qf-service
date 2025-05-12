@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.love.mapper.FollowMapper">
+
+    <select id="FollowList" resultType="com.love.pojo.user.User">
+        select *
+        from user_follow
+        join
+            user u on user_follow.follow_user_id = u.id
+        where user_id = #{userId}
+    </select>
+
+    <!-- 粉丝列表 -->
+    <select id="fansList" resultType="com.love.pojo.user.User">
+        select *
+        from user_follow
+        join
+            user u on user_follow.user_id = u.id
+        where follow_user_id = #{userId}
+    </select>
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.love.mapper.admin.AdminVideoMapper">
+
+    <!-- 复制视频 -->
+    <insert id="copyVideo">
+        insert into video(title, content, cover, video_url, user_id, create_time,category_id)
+        select title, content, cover, video_url, user_id, create_time,category_id
+        from video_draft
+        where id = #{id}
+    </insert>
+    <select id="getDraftVideoList" resultType="com.love.pojo.Video">
+        select *
+        from video vd
+        join
+            user u on vd.user_id = u.id
+    </select>
+</mapper>

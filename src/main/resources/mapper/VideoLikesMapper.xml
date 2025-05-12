@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.love.mapper.VideoLikesMapper">
+
+    <!-- 查询用户点赞的视频列表 -->
+    <select id="findVideoLikeList" resultType="com.love.pojo.Video">
+        select v.id,v.title,v.cover,v.content,v.create_time
+        from video_likes vl
+        join video v on vl.video_id = v.id
+        where vl.user_id = #{userId}
+    </select>
+</mapper>

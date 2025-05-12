@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.love.mapper.AnnouncementMapper">
+
+    <update id="updateAnnouncement">
+        update announcement
+        <set>
+            <if test="title != null">
+                title = #{title},
+            </if>
+            <if test="text != null">
+                text = #{text},
+            </if>
+            <if test="imageUrl != null">
+                image_url = #{imageUrl},
+            </if>
+            <if test="videoUrl != null">
+                video_url = #{videoUrl},
+            </if>
+        </set>
+        where announcement_id = #{announcementId}
+    </update>
+</mapper>

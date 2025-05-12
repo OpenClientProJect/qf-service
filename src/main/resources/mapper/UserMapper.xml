@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.love.mapper.user.UserMapper">
+    <update id="update">
+        update user
+        <set>
+            <if test="nickname != null">
+                nickname = #{nickname},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="introduction != null">
+                introduction = #{introduction},
+            </if>
+            <if test="userPic != null">
+                user_pic = #{userPic},
+            </if>
+            <if test="updateTime != null">
+                update_time= #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+<!--    <select id="getUserInfo" resultType="com.love.dto.UserAndFollowAndVideoDto">-->
+<!--        select u.id, u.username, u.nickname, u.sex, u.email, u.user_pic, u.introduction,-->
+<!--               f.user_id, f.follow_user_id,-->
+<!--               v.id as videoId, v.title as videoTitle, v.cover as videoCover, v.content as videoContent, v.user_id, v.create_time as videoCreateTime-->
+<!--        from user u-->
+<!--                 left join-->
+<!--             user_follow f on f.user_id = u.id-->
+<!--                 left join-->
+<!--             video v on v.user_id = u.id-->
+<!--        where u.id = #{id}-->
+<!--    </select>-->
+</mapper>

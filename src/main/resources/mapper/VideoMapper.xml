@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.love.mapper.VideoMapper">
+    <!-- 查询所有视频 -->
+    <select id="list" resultType="com.love.pojo.Video">
+        select uv.*, u.nickname,u.user_pic
+        from video uv
+                 join user u on uv.user_id = u.id
+        <where>
+            <if test="subCategoryId != null">
+                and uv.sub_category_id = #{subCategoryId}
+            </if>
+        </where>
+        order by uv.update_time desc
+        limit 100
+    </select>
+    <!-- 根据id查询视频和用户信息 -->
+    <select id="findById" resultType="com.love.pojo.Video">
+        select uv.*,u.nickname,u.user_pic,u.introduction,u.username
+        from video uv
+        join user u on uv.user_id = u.id
+        where uv.id = #{id}
+    </select>
+    <!-- 视频收藏列表 -->
+    <select id="findVideoFavorite" resultType="com.love.pojo.Video">
+        select v.id,v.title,v.cover,v.content,v.video_url,v.create_time
+        from video_favorite vf
+        join  video v on vf.video_id = v.id
+        where vf.user_id = #{userId}
+    </select>
+</mapper>

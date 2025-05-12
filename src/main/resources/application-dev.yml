@@ -1,0 +1,57 @@
+##开发环境一
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/qf?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 200309
+  ## 邮件配置
+  mail:
+    host: smtp.163.com
+    username: libilibi2025@163.com
+    password: PTZdTsmgSw8T68vA #环境变量中获取秘钥
+    port: 465
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          ssl:
+            enable: true
+  data:
+    ##Redis非关系形数据库配置
+    redis:
+      port: 6379
+      host: 127.0.0.1
+      password:
+  servlet:
+    # 配置servlet的multipart设置，用于文件上传
+    multipart:
+      # 启用multipart文件上传功能
+      enabled: true
+      # 设置单个文件的最大大小为10MBcdm
+      max-file-size: 1000MB
+      # 设置整个HTTP请求的最大大小为10MB，适应单文件或多文件上传
+      max-request-size: 1000MB
+server:
+  port: 8080
+mybatis:
+  configuration:
+    ##开启驼峰命名
+    map-underscore-to-camel-case: true
+  ##配置映射文件路径
+  mapper-locations: mapper/*.xml
+# 配置 MyBatis 控制台输出 SQL
+logging:
+  level:
+    com.ligg.mapper: debug
+# 七牛云配置
+qiniu:
+  access-key: P2iJqopJsg_g7qGRKXKdASmzaw0jS1Ng65X9ZdeJ
+  secret-key: rw3-MmdzzPkjYJRRyWu51S70Tz9EQQwtV73mVrgX
+  bucket-name: bilibiliweb
+  domain: http://svvprcp6e.hn-bkt.clouddn.com #域名sujdd1829.hn-bkt.clouddn.com
+
+  video-path: videos/ # 新增的视频文件存储路径或前缀
+

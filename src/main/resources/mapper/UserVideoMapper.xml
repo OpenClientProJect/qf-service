@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.love.mapper.user.UserVideoMapper">
+    <!--编辑用户视频信息-->
+
+    <update id="update">
+        update video
+        <set>
+            <if test="title!=null">
+                title=#{title},
+            </if>
+            <if test="cover!=null">
+                cover=#{cover},
+            </if>
+            <if test="content!=null">
+                content=#{content},
+            </if>
+            <if test="videoUrl!=null">
+                video_url=#{videoUrl},
+            </if>
+            update_time=now()
+
+        </set>
+        where id=#{id}
+    </update>
+
+    <!--查询用户点赞信息-->
+    <select id="listByUserId" resultType="com.love.dto.VideoDto">
+        select vl.id,
+               vl.video_id,
+               vl.user_id,
+               vl.liked_at,
+               v.title,
+               v.cover,
+               u.nickname,
+               u.user_pic
+        from video_likes vl
+                 join video v on vl.video_id = v.id
+                 join user u on vl.user_id = u.id
+        where v.user_id = #{userId}
+        order by vl.liked_at desc
+    </select>
+</mapper>
