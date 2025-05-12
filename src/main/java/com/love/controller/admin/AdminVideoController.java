@@ -19,7 +19,7 @@ public class AdminVideoController {
     private AdminVideoService adminVideoService;
 
     /**
-     * 获取草稿视频列表
+     * 获取草审核频列表
      */
     @GetMapping("/getVideoList")
     public Result<List<Video>> getVideoList() {
