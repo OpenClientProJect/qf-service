@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/search")
 public class SearchController {
@@ -18,11 +20,11 @@ public class SearchController {
 
     // 搜索视频
     @GetMapping
-    public Result<PageBean<Video>> search(String keyword,
+    public Result<Map<String,Object>> search(String keyword,
                                           Integer pageNum,//当前页
                                           Integer pageSize//每页条数
     ) {
-        PageBean<Video> pb = searchService.search(keyword,pageNum,pageSize);
+        Map<String,Object> pb = searchService.search(keyword,pageNum,pageSize);
         return Result.success(pb);
     }
 }
