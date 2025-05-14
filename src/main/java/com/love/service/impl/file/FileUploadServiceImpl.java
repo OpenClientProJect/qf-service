@@ -37,6 +37,8 @@ public class FileUploadServiceImpl implements FileUploadService {
             return ("文件为空");
         }
         try {
+            log.info("ak:" +accessKey);
+            log.info("sk:" +secretKey);
             // 获取文件输入流
             InputStream inputStream = file.getInputStream();
 
