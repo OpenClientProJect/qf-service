@@ -5,11 +5,13 @@ import com.love.pojo.Result;
 import com.love.pojo.Video;
 import com.love.service.BarrageService;
 import com.love.service.VideoService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/video")
 public class VideoController {
@@ -27,6 +29,7 @@ public class VideoController {
     //获取视频详细信息
     @GetMapping("/videoInfo")
     public Result<Video> videoInfo(Integer id){
+        log.info("获取视频详情，ID: {}", id);
         Video video = videoService.findById(id);
         return Result.success(video);
     }

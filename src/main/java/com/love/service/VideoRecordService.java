@@ -9,7 +9,7 @@ public interface VideoRecordService {
     /**
      * 添加播放记录
      */
-    void add(String username, Integer videoId);
+    void add(String username, Integer videoId,Integer categoryId);
 
     List<Video> findByUserIdAndVideoId(String username);
 }
