@@ -9,7 +9,7 @@ spring:
   mail:
     host: smtp.163.com
     username: libilibi2025@163.com
-    password: PTZdTsmgSw8T68vA #环境变量中获取秘钥
+    password: PTZdTsmgSw8T68vA
     port: 465
     properties:
       mail:

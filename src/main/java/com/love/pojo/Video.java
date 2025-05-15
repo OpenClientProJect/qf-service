@@ -35,6 +35,7 @@ public class Video {
     private Integer favoriteCount;//收藏数
     private LocalDateTime createTime;//发布时间
     private LocalDateTime updateTime;//更新时间
+    private Boolean isAnime; // 标识是否为番剧内容
     // 分组校验,更新组
     public interface Update extends Default {
 

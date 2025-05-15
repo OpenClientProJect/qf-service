@@ -11,7 +11,7 @@
  Target Server Version : 80040 (8.0.40)
  File Encoding         : 65001
 
- Date: 13/05/2025 15:26:49
+ Date: 15/05/2025 10:06:00
 */
 
 SET NAMES utf8mb4;
@@ -32,11 +32,7 @@ CREATE TABLE `anime`  (
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `recommend` int NULL DEFAULT 0 COMMENT '推荐',
   PRIMARY KEY (`anime_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '存储番剧的基本信息' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of anime
--- ----------------------------
+) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '存储番剧的基本信息' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for anime_episode
@@ -54,11 +50,7 @@ CREATE TABLE `anime_episode`  (
   PRIMARY KEY (`episode_id`) USING BTREE,
   INDEX `episode_anime_anime_id_fk`(`anime_id` ASC) USING BTREE,
   CONSTRAINT `episode_anime_anime_id_fk` FOREIGN KEY (`anime_id`) REFERENCES `anime` (`anime_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of anime_episode
--- ----------------------------
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for announcement
@@ -76,10 +68,6 @@ CREATE TABLE `announcement`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_estonian_ci COMMENT = '公告表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
--- Records of announcement
--- ----------------------------
-
--- ----------------------------
 -- Table structure for background
 -- ----------------------------
 DROP TABLE IF EXISTS `background`;
@@ -89,10 +77,6 @@ CREATE TABLE `background`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `background_id_index`(`id` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_estonian_ci ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of background
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for barrage
@@ -111,10 +95,6 @@ CREATE TABLE `barrage`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 241 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '弹幕表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
--- Records of barrage
--- ----------------------------
-
--- ----------------------------
 -- Table structure for chat_message
 -- ----------------------------
 DROP TABLE IF EXISTS `chat_message`;
@@ -128,10 +108,6 @@ CREATE TABLE `chat_message`  (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 177 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of chat_message
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for comments
@@ -154,10 +130,6 @@ CREATE TABLE `comments`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 108 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
--- Records of comments
--- ----------------------------
-
--- ----------------------------
 -- Table structure for home_image
 -- ----------------------------
 DROP TABLE IF EXISTS `home_image`;
@@ -173,11 +145,6 @@ CREATE TABLE `home_image`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '首页图片' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
--- Records of home_image
--- ----------------------------
-INSERT INTO `home_image` VALUES (5, 'http://svs454s5u.hn-bkt.clouddn.com/9e9210f2-414c-4740-ba65-f3906b42d0aa.jpg', '2025-05-09 18:32:52', '123', 'http://svs454s5u.hn-bkt.clouddn.com/videos/3c0d3fcf-6da7-4557-b43d-4572fc54bbed.mp4', '123');
-
--- ----------------------------
 -- Table structure for operate_log
 -- ----------------------------
 DROP TABLE IF EXISTS `operate_log`;
@@ -191,25 +158,7 @@ CREATE TABLE `operate_log`  (
   `cost_time` bigint NULL DEFAULT NULL COMMENT '操作耗时',
   `return_value` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '方法返回值',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 304 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of operate_log
--- ----------------------------
-INSERT INTO `operate_log` VALUES (290, 2450284793, '2025-05-09 15:11:48', 'com.love.controller.user.UserVideoController', 'add', '[Video(id=null, title=123, cover=http://svs454s5u.hn-bkt.clouddn.com/56931176-a425-46f0-81b0-e54c94359bca.jpg, userId=null, nickname=null, userPic=null, username=null, introduction=null, content=123, categoryId=6, videoUrl=http://svs454s5u.hn-bkt.clouddn.com/videos/ecfd8f69-f5c2-485e-9dfd-a563e231f527.mp4, likesCount=null, favoriteCount=null, createTime=null, updateTime=null)]', 5, '{\"code\":200,\"message\":\"操作成功\",\"data\":null}');
-INSERT INTO `operate_log` VALUES (291, 2450281293, '2025-05-09 15:51:41', 'com.love.controller.user.UserController', 'update', '[User(id=null, username=null, password=null, nickname=昵称_de774a, sex=0, role=null, status=null, email=null, code=null, userPic=http://svs454s5u.hn-bkt.clouddn.com/44cbf52c-f38c-4ba9-bc74-8fcd07f8cc2a.jpg, introduction=12312313, createTime=null, updateTime=null)]', 8, '{\"code\":200,\"message\":\"操作成功\",\"data\":null}');
-INSERT INTO `operate_log` VALUES (292, 2450281293, '2025-05-09 16:44:27', 'com.love.controller.user.UserVideoController', 'add', '[Video(id=null, title=123, cover=http://svs454s5u.hn-bkt.clouddn.com/3707f6cb-fdb6-405b-ad7d-8e833040a6cc.jpg, userId=null, nickname=null, userPic=null, username=null, introduction=null, content=123123, categoryId=201, videoUrl=http://svs454s5u.hn-bkt.clouddn.com/videos/23ca35d6-adba-4f18-885c-cdb1ffef72e6.mp4, likesCount=null, favoriteCount=null, createTime=null, updateTime=null)]', 12, '{\"code\":200,\"message\":\"操作成功\",\"data\":null}');
-INSERT INTO `operate_log` VALUES (293, 2450281293, '2025-05-09 16:48:43', 'com.love.controller.user.UserVideoController', 'add', '[Video(id=null, title=312313, cover=http://svs454s5u.hn-bkt.clouddn.com/1cfe91dc-df84-4e55-a6cd-df3b0c5c19b6.jpg, userId=null, nickname=null, userPic=null, username=null, introduction=null, content=1232131, categoryId=106, videoUrl=http://svs454s5u.hn-bkt.clouddn.com/videos/b51ccb95-590a-4ea4-91e3-6f90d9633eab.mp4, likesCount=null, favoriteCount=null, createTime=null, updateTime=null)]', 4, '{\"code\":200,\"message\":\"操作成功\",\"data\":null}');
-INSERT INTO `operate_log` VALUES (294, 2450281293, '2025-05-09 16:54:11', 'com.love.controller.user.UserVideoController', 'add', '[Video(id=null, title=1231321, cover=http://svs454s5u.hn-bkt.clouddn.com/a6251b51-cfb2-48ea-97f9-e75201973503.jpg, userId=null, nickname=null, userPic=null, username=null, introduction=null, content=123123, mainCategoryId=1, subCategoryId=105, videoUrl=http://svs454s5u.hn-bkt.clouddn.com/videos/01594975-8e01-458d-813d-aea7199a037d.mp4, likesCount=null, favoriteCount=null, createTime=null, updateTime=null)]', 43, '{\"code\":200,\"message\":\"操作成功\",\"data\":null}');
-INSERT INTO `operate_log` VALUES (295, 2450281293, '2025-05-09 17:02:05', 'com.love.controller.user.UserVideoController', 'add', '[Video(id=null, title=123123, cover=http://svs454s5u.hn-bkt.clouddn.com/ddddfa0e-f8e7-4706-b3d8-94ac14784d22.jpg, userId=null, nickname=null, userPic=null, username=null, introduction=null, content=1312311, mainCategoryId=2, subCategoryId=202, videoUrl=http://svs454s5u.hn-bkt.clouddn.com/videos/744e1b71-37de-4048-81a9-d29e1980a389.mp4, likesCount=null, favoriteCount=null, createTime=null, updateTime=null)]', 5, '{\"code\":200,\"message\":\"操作成功\",\"data\":null}');
-INSERT INTO `operate_log` VALUES (296, 2450281293, '2025-05-09 17:03:03', 'com.love.controller.user.UserVideoController', 'add', '[Video(id=null, title=1231, cover=http://svs454s5u.hn-bkt.clouddn.com/7f4dabec-9f6f-48da-ad51-ca8e7e1c9d05.jpg, userId=null, nickname=null, userPic=null, username=null, introduction=null, content=13212313, mainCategoryId=2, subCategoryId=203, videoUrl=http://svs454s5u.hn-bkt.clouddn.com/videos/de41e216-3da7-416a-b930-52cbdbf6f43d.mp4, likesCount=null, favoriteCount=null, createTime=null, updateTime=null)]', 39, '{\"code\":200,\"message\":\"操作成功\",\"data\":null}');
-INSERT INTO `operate_log` VALUES (297, 2450284793, '2025-05-12 14:14:28', 'com.love.controller.user.UserController', 'update', '[User(id=null, username=null, password=null, nickname=昵称_de774a, sex=0, role=null, status=null, email=null, code=null, userPic=http://svvprcp6e.hn-bkt.clouddn.com/c0528e2a-097c-4b50-b747-75b89486297c.png, introduction=123123, createTime=null, updateTime=null)]', 81, '{\"code\":200,\"message\":\"操作成功\",\"data\":null}');
-INSERT INTO `operate_log` VALUES (298, 2450284793, '2025-05-12 14:22:41', 'com.love.controller.user.UserVideoController', 'add', '[Video(id=null, title=123, cover=http://svvprcp6e.hn-bkt.clouddn.com/d0dba62b-5511-4804-ac37-e7821ee67b48.png, userId=null, nickname=null, userPic=null, username=null, introduction=null, content=123, categoryId=7, videoUrl=http://svvprcp6e.hn-bkt.clouddn.com/videos/a2110501-2004-46be-b687-3f8e8f2ee985.mp4, status=null, likesCount=null, favoriteCount=null, createTime=null, updateTime=null)]', 28, '{\"code\":200,\"message\":\"操作成功\",\"data\":null}');
-INSERT INTO `operate_log` VALUES (299, 2450284793, '2025-05-12 15:13:03', 'com.love.controller.user.UserVideoController', 'videoLike', '[110, like]', 13, '{\"code\":200,\"message\":\"操作成功\",\"data\":\"点赞成功\"}');
-INSERT INTO `operate_log` VALUES (300, 2450284793, '2025-05-12 15:13:04', 'com.love.controller.user.UserVideoController', 'videoLike', '[110, favorite]', 11, '{\"code\":200,\"message\":\"操作成功\",\"data\":\"收藏成功\"}');
-INSERT INTO `operate_log` VALUES (301, 2450284793, '2025-05-12 15:13:07', 'com.love.controller.user.UserVideoController', 'videoLike', '[108, favorite]', 14, '{\"code\":200,\"message\":\"操作成功\",\"data\":\"收藏成功\"}');
-INSERT INTO `operate_log` VALUES (302, 2450284793, '2025-05-12 15:13:07', 'com.love.controller.user.UserVideoController', 'videoLike', '[108, like]', 9, '{\"code\":200,\"message\":\"操作成功\",\"data\":\"点赞成功\"}');
-INSERT INTO `operate_log` VALUES (303, 2450284793, '2025-05-12 15:13:08', 'com.love.controller.user.UserFollowController', 'follow', '[2450281293, true]', 6, '{\"code\":200,\"message\":\"操作成功\",\"data\":null}');
+) ENGINE = InnoDB AUTO_INCREMENT = 305 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for user
@@ -233,12 +182,6 @@ CREATE TABLE `user`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 2450284794 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
--- Records of user
--- ----------------------------
-INSERT INTO `user` VALUES (2450281293, '24895022133', 'e10adc3949ba59abbe56e057f20f883e', '昵称_de774a', 0, '2954494754@qq.com', 'http://svs454s5u.hn-bkt.clouddn.com/44cbf52c-f38c-4ba9-bc74-8fcd07f8cc2a.jpg', '12312313', '2025-05-09 14:09:14', '2025-05-09 14:09:14', 'admin', 1);
-INSERT INTO `user` VALUES (2450284793, '24895020387', 'e10adc3949ba59abbe56e057f20f883e', '昵称_de774a', 0, '2954494754@qq.com', 'http://svvprcp6e.hn-bkt.clouddn.com/c0528e2a-097c-4b50-b747-75b89486297c.png', '123123', '2025-05-09 14:09:14', '2025-05-09 14:09:14', 'admin', 1);
-
--- ----------------------------
 -- Table structure for user_follow
 -- ----------------------------
 DROP TABLE IF EXISTS `user_follow`;
@@ -249,11 +192,6 @@ CREATE TABLE `user_follow`  (
   `create_time` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 510 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '关注表' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of user_follow
--- ----------------------------
-INSERT INTO `user_follow` VALUES (509, 2450284793, 2450281293, '2025-05-12 15:13:07');
 
 -- ----------------------------
 -- Table structure for video
@@ -274,17 +212,7 @@ CREATE TABLE `video`  (
   `status` int NOT NULL DEFAULT 1 COMMENT '视频状态 1=待审核 2=已审核 3=通过',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `user_video_user_id_fk`(`user_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 111 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of video
--- ----------------------------
-INSERT INTO `video` VALUES (105, '123', 'http://svs454s5u.hn-bkt.clouddn.com/56931176-a425-46f0-81b0-e54c94359bca.jpg', '123', 'http://svs454s5u.hn-bkt.clouddn.com/videos/ecfd8f69-f5c2-485e-9dfd-a563e231f527.mp4', 2450284793, '2025-05-09 15:11:48', '2025-05-09 15:11:48', 0, 0, 203, 2);
-INSERT INTO `video` VALUES (106, '1231', 'http://svs454s5u.hn-bkt.clouddn.com/7f4dabec-9f6f-48da-ad51-ca8e7e1c9d05.jpg', '13212313', 'http://svs454s5u.hn-bkt.clouddn.com/videos/de41e216-3da7-416a-b930-52cbdbf6f43d.mp4', 2450281293, '2025-05-09 17:03:02', '2025-05-09 17:03:02', 0, 0, 203, 3);
-INSERT INTO `video` VALUES (107, '312313', 'http://svs454s5u.hn-bkt.clouddn.com/1cfe91dc-df84-4e55-a6cd-df3b0c5c19b6.jpg', '1232131', 'http://svs454s5u.hn-bkt.clouddn.com/videos/b51ccb95-590a-4ea4-91e3-6f90d9633eab.mp4', 2450281293, '2025-05-09 16:48:43', '2025-05-09 16:48:43', 0, 0, 106, 2);
-INSERT INTO `video` VALUES (108, '1231321', 'http://svs454s5u.hn-bkt.clouddn.com/a6251b51-cfb2-48ea-97f9-e75201973503.jpg', '123123', 'http://svs454s5u.hn-bkt.clouddn.com/videos/01594975-8e01-458d-813d-aea7199a037d.mp4', 2450281293, '2025-05-09 16:54:10', '2025-05-09 16:54:10', 1, 1, 105, 2);
-INSERT INTO `video` VALUES (109, '123123', 'http://svs454s5u.hn-bkt.clouddn.com/ddddfa0e-f8e7-4706-b3d8-94ac14784d22.jpg', '1312311', 'http://svs454s5u.hn-bkt.clouddn.com/videos/744e1b71-37de-4048-81a9-d29e1980a389.mp4', 2450281293, '2025-05-09 17:02:05', '2025-05-09 17:02:05', 0, 0, 202, 3);
-INSERT INTO `video` VALUES (110, '123', 'http://svvprcp6e.hn-bkt.clouddn.com/d0dba62b-5511-4804-ac37-e7821ee67b48.png', '123', 'http://svvprcp6e.hn-bkt.clouddn.com/videos/a2110501-2004-46be-b687-3f8e8f2ee985.mp4', 2450284793, '2025-05-12 14:22:40', '2025-05-12 14:22:40', 1, 1, 7, 2);
+) ENGINE = InnoDB AUTO_INCREMENT = 112 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for video_draft
@@ -308,15 +236,6 @@ CREATE TABLE `video_draft`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 110 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '草稿视频' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
--- Records of video_draft
--- ----------------------------
-INSERT INTO `video_draft` VALUES (105, '123', 'http://svs454s5u.hn-bkt.clouddn.com/56931176-a425-46f0-81b0-e54c94359bca.jpg', '123', 'http://svs454s5u.hn-bkt.clouddn.com/videos/ecfd8f69-f5c2-485e-9dfd-a563e231f527.mp4', 2450284793, '2025-05-09 15:11:48', '2025-05-09 15:11:48', 0, 0, 6, NULL);
-INSERT INTO `video_draft` VALUES (106, '123', 'http://svs454s5u.hn-bkt.clouddn.com/3707f6cb-fdb6-405b-ad7d-8e833040a6cc.jpg', '123123', 'http://svs454s5u.hn-bkt.clouddn.com/videos/23ca35d6-adba-4f18-885c-cdb1ffef72e6.mp4', 2450281293, '2025-05-09 16:44:26', '2025-05-09 16:44:26', 0, 0, 201, NULL);
-INSERT INTO `video_draft` VALUES (107, '312313', 'http://svs454s5u.hn-bkt.clouddn.com/1cfe91dc-df84-4e55-a6cd-df3b0c5c19b6.jpg', '1232131', 'http://svs454s5u.hn-bkt.clouddn.com/videos/b51ccb95-590a-4ea4-91e3-6f90d9633eab.mp4', 2450281293, '2025-05-09 16:48:43', '2025-05-09 16:48:43', 0, 0, 106, NULL);
-INSERT INTO `video_draft` VALUES (108, '1231321', 'http://svs454s5u.hn-bkt.clouddn.com/a6251b51-cfb2-48ea-97f9-e75201973503.jpg', '123123', 'http://svs454s5u.hn-bkt.clouddn.com/videos/01594975-8e01-458d-813d-aea7199a037d.mp4', 2450281293, '2025-05-09 16:54:10', '2025-05-09 16:54:10', 0, 0, 105, 1);
-INSERT INTO `video_draft` VALUES (109, '123123', 'http://svs454s5u.hn-bkt.clouddn.com/ddddfa0e-f8e7-4706-b3d8-94ac14784d22.jpg', '1312311', 'http://svs454s5u.hn-bkt.clouddn.com/videos/744e1b71-37de-4048-81a9-d29e1980a389.mp4', 2450281293, '2025-05-09 17:02:05', '2025-05-09 17:02:05', 0, 0, 202, 2);
-
--- ----------------------------
 -- Table structure for video_episode
 -- ----------------------------
 DROP TABLE IF EXISTS `video_episode`;
@@ -325,11 +244,7 @@ CREATE TABLE `video_episode`  (
   `video_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_as_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `video_episode_id_index`(`id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_as_ci COMMENT = '视频剧集' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of video_episode
--- ----------------------------
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_as_ci COMMENT = '视频剧集' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for video_favorite
@@ -342,12 +257,6 @@ CREATE TABLE `video_favorite`  (
   `Favorite_at` timestamp NULL DEFAULT NULL,
   INDEX `video_favorite_id_index`(`id` ASC) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 46 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '视频收藏' ROW_FORMAT = DYNAMIC;
-
--- ----------------------------
--- Records of video_favorite
--- ----------------------------
-INSERT INTO `video_favorite` VALUES (44, 2450284793, 110, '2025-05-12 15:13:03');
-INSERT INTO `video_favorite` VALUES (45, 2450284793, 108, '2025-05-12 15:13:06');
 
 -- ----------------------------
 -- Table structure for video_likes
@@ -364,12 +273,6 @@ CREATE TABLE `video_likes`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 129 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '视频点赞表' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
--- Records of video_likes
--- ----------------------------
-INSERT INTO `video_likes` VALUES (127, 2450284793, 110, '2025-05-12 15:13:03', NULL);
-INSERT INTO `video_likes` VALUES (128, 2450284793, 108, '2025-05-12 15:13:07', NULL);
-
--- ----------------------------
 -- Table structure for video_record
 -- ----------------------------
 DROP TABLE IF EXISTS `video_record`;
@@ -378,13 +281,8 @@ CREATE TABLE `video_record`  (
   `username` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_as_ci NOT NULL,
   `video_id` int NOT NULL,
   `create_time` datetime NULL DEFAULT NULL,
-  PRIMARY KEY (`username`) USING BTREE,
+  `category_id` int NULL DEFAULT NULL,
   INDEX `video_record_id_index`(`id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_as_ci COMMENT = '视频播放记录' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of video_record
--- ----------------------------
-INSERT INTO `video_record` VALUES (10, '24895020387', 108, '2025-05-12 16:12:43');
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_as_ci COMMENT = '视频播放记录' ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;

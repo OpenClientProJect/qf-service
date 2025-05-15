@@ -2,7 +2,9 @@ package com.love.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.love.mapper.VideoMapper;
+import com.love.mapper.anime.AnimeMapper;
 import com.love.mapper.user.VideoRecordMapper;
+import com.love.pojo.Anime;
 import com.love.pojo.Video;
 import com.love.pojo.VideoRecord;
 import com.love.service.VideoService;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -28,6 +31,8 @@ public class VideoServiceImpl implements VideoService {
     HttpServletRequest request;
     @Autowired
     private VideoRecordMapper videoRecordMapper;
+    @Autowired
+    private AnimeMapper  animeMapper;
 
     // 查询所有视频
     @Override
@@ -37,6 +42,23 @@ public class VideoServiceImpl implements VideoService {
                 .filter(video -> video.getStatus() == 2)
                 .toList();
         
+        // 设置原始视频列表的isAnime字段为false
+        List<Video> updatedOriginalList = new ArrayList<>();
+        for (Video video : originalList) {
+            video.setIsAnime(false);
+            updatedOriginalList.add(video);
+        }
+        
+        // 获取动漫列表并转换为Video对象
+        List<Anime> animeList = animeMapper.list();
+        List<Video> combinedList = new ArrayList<>(updatedOriginalList);
+        
+        // 将Anime对象转换为Video对象并添加到结果列表中
+        for (Anime anime : animeList) {
+            Video videoFromAnime = convertAnimeToVideo(anime);
+            combinedList.add(videoFromAnime);
+        }
+        
         // 检查用户是否已登录
         if (request.getHeader("Authorization") != null) {
             String authHeader = request.getHeader("Authorization");
@@ -45,13 +67,13 @@ public class VideoServiceImpl implements VideoService {
             String username = extractUsername(authHeader);
 
             if (username.isEmpty()) {
-                return originalList;
+                return combinedList;
             }
             
             int recordCount = videoRecordMapper.countUserRecords(username);
 
             if (recordCount == 0) {
-                return originalList;
+                return combinedList;
             }
             
             // 获取用户的播放记录列表
@@ -60,12 +82,26 @@ public class VideoServiceImpl implements VideoService {
 
             // 如果用户有播放记录，则重新排序视频列表
             if (!videoRecords.isEmpty()) {
-                return getVideos(videoRecords, originalList);
+                return getVideos(videoRecords, combinedList);
             }
         }
         
-        // 如果用户未登录或没有播放记录，直接返回原始列表
-        return originalList;
+        // 如果用户未登录或没有播放记录，直接返回合并后的列表
+        return combinedList;
+    }
+
+    /**
+     * 将Anime对象转换为Video对象
+     */
+    private Video convertAnimeToVideo(Anime anime) {
+        Video video = new Video();
+        video.setId(anime.getAnimeId().intValue());
+        video.setTitle(anime.getTitle());
+        video.setCover(anime.getCoverImage());
+        video.setContent(anime.getDescription());
+        video.setStatus(2); // 设置状态为2，与原始视频列表过滤条件一致
+        video.setIsAnime(true); // 设置标识，表示这是番剧内容
+        return video;
     }
 
     private static List<Video> getVideos(List<VideoRecord> videoRecords, List<Video> originalList) {
@@ -141,3 +177,4 @@ public class VideoServiceImpl implements VideoService {
         return videoMapper.findVideoFavorite(userId);
     }
 }
+
