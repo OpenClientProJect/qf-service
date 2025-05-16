@@ -18,5 +18,8 @@ public class Anime {
     private LocalDate releaseDate;//首播日期
     private String status;//番剧状态
     private Integer recommend;//推荐
+    private Long userId;
+    private String nickname;
+    private String userPic;
     private LocalDateTime updatedAt;//更新时间
 }

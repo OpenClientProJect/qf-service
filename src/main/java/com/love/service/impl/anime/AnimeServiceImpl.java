@@ -33,6 +33,8 @@ public class AnimeServiceImpl implements AnimeService {
         User user = userMapper.findByUserName(username);
         if (!Objects.equals(user.getRole(), "admin"))
             return "用户没有权限发布动漫";
+        Long userId = (Long) map.get("id");
+        anime.setUserId(userId);
         animeMapper.publishAnime(anime);
         return null;
     }

@@ -4,22 +4,45 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.love.mapper.SearchMapper">
 
-    <!--搜索-->
-    <select id="search" resultType="com.love.pojo.Video">
+    <!--搜索视频-->
+    <select id="searchVideos" resultType="com.love.pojo.Video">
         SELECT v.id,
                v.title,
                v.video_url,
                v.content,
                v.cover,
                v.create_time,
-               u.id,
+               u.id as user_id,
                u.username,
                u.nickname,
-               u.user_pic
+               u.user_pic,
+               0 as is_anime
         FROM video v
                  JOIN
              user u ON v.user_id = u.id
         WHERE v.title LIKE CONCAT('%', #{keyword}, '%')
+          AND v.status = 2
+        ORDER BY v.create_time DESC
+    </select>
+    
+    <!--搜索番剧-->
+    <select id="searchAnimes" resultType="com.love.pojo.Video">
+        SELECT a.anime_id as id,
+               a.title,
+               NULL as video_url,
+               a.description as content,
+               a.cover_image as cover,
+               a.created_at as create_time,
+               u.id as user_id,
+               u.username,
+               u.nickname,
+               u.user_pic,
+               1 as is_anime
+        FROM anime a
+                 JOIN
+             user u ON a.user_id = u.id
+        WHERE a.title LIKE CONCAT('%', #{keyword}, '%')
+        ORDER BY a.created_at DESC
     </select>
 
     <select id="searchUser" resultType="com.love.pojo.user.User">

@@ -8,8 +8,12 @@ import java.util.List;
 
 @Mapper
 public interface SearchMapper {
-    // 根据标题和简介搜索
-    List<Video> search(String keyword);
+    // 搜索视频
+    List<Video> searchVideos(String keyword);
+    
+    // 搜索番剧
+    List<Video> searchAnimes(String keyword);
 
+    // 搜索用户
     List<User> searchUser(String keyword);
 }

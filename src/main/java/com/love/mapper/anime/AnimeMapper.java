@@ -21,7 +21,6 @@ public interface AnimeMapper {
     //获取动漫的章节
     List<AnimeEpisode> episode(Long animeId);
     //获取动漫列表
-    @Select("select * from anime order by anime_id desc")
     List<Anime> list();
     //更新番剧信息
     @Update("update anime set title=#{title},cover_image=#{coverImage},status=#{status},description=#{description},release_date=#{releaseDate},updated_at=NOW() " +

@@ -6,8 +6,8 @@
 
     <!--发布动漫-->
     <insert id="publishAnime" parameterType="com.love.pojo.Anime">
-        insert into anime(title, description, cover_image, release_date, status, created_at, updated_at)
-        values (#{title}, #{description}, #{coverImage}, #{releaseDate}, #{status}, now(), now())
+        insert into anime(title, description, cover_image, release_date, status,user_id, created_at, updated_at)
+        values (#{title}, #{description}, #{coverImage}, #{releaseDate}, #{status},#{userId}, now(), now())
     </insert>
     <!--获取动漫集数-->
     <update id="episode">
@@ -34,6 +34,11 @@
                  left join
              anime_episode e on e.anime_id = a.anime_id
         where a.anime_id = #{id}
+    </select>
+    <select id="list" resultType="com.love.pojo.Anime">
+            select a.anime_id,a.title,a.cover_image,a.status,u.nickname,u.user_pic
+            from anime a
+            left join user u on a.user_id = u.id
     </select>
 
 </mapper>

@@ -49,4 +49,17 @@ public interface VideoRecordMapper {
      */
     @Select("select count(*) from video_record where username=#{username}")
     int countUserRecords(String username);
+
+
+    /**
+     * 获取所有有观看记录的用户
+     */
+    @Select("SELECT DISTINCT username FROM video_record")
+    List<String> getAllUsers();
+
+    /**
+     * 获取视频的观看次数
+     */
+    @Select("SELECT COUNT(*) FROM video_record WHERE video_id = #{videoId}")
+    int getWatchCount(Integer videoId);
 }

@@ -11,7 +11,7 @@
  Target Server Version : 80040 (8.0.40)
  File Encoding         : 65001
 
- Date: 15/05/2025 10:06:00
+ Date: 16/05/2025 10:59:34
 */
 
 SET NAMES utf8mb4;
@@ -31,8 +31,9 @@ CREATE TABLE `anime`  (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `recommend` int NULL DEFAULT 0 COMMENT '推荐',
+  `user_id` bigint NULL DEFAULT NULL,
   PRIMARY KEY (`anime_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '存储番剧的基本信息' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 30 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '存储番剧的基本信息' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for anime_episode
